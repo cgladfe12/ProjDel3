@@ -1,0 +1,42 @@
+create table User(
+	Username varchar (20) NOT NULL,
+	Date datetime,
+	EntryID int NOT NULL,
+	FoodId int NOT NULL
+);
+
+create table Report(
+	Date datetime PRIMARY KEY NOT NULL,
+	Protein int,
+	Calories int,
+	Carbs int,
+	Fat int
+);
+
+create table Food(
+	FoodID int PRIMARY KEY NOT NULL,
+	Fat int,
+	Carbs int,
+	Calories int,
+	Protein int,
+	Name varchar(20),
+	Type varchar (50),
+	ServingUnit varchar (10),
+	ServingSize int
+);
+
+create table Entry(
+	EntryID int PRIMARY KEY,
+	Date datetime,
+	FOREIGN KEY (Date) REFERENCES Report
+);
+
+create table Composes(
+	EntryID int NOT NULL,
+	FoodID int NOT NULL,
+	Amount int,
+	FOREIGN KEY (EntryID) REFERENCES Entry,
+	FOREIGN KEY (FoodID) REFERENCES Food
+);
+
+
